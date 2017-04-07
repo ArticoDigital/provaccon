@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     rename = require('gulp-rename');
 
 gulp.task('sass', function () {
-    return gulp.src('./wp-content/themes/petpet/assets/sass/main.sass')
+    return gulp.src('./wp-content/themes/provaccon/assets/sass/main.sass')
         .pipe(sourcemaps.init())
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(sourcemaps.write())
@@ -18,9 +18,9 @@ gulp.task('sass', function () {
             basename: 'main',
             extname: '.min.css'
         }))
-        .pipe(gulp.dest('./wp-content/themes/petpet/assets/css/'));
+        .pipe(gulp.dest('./wp-content/themes/provaccon/assets/css/'));
 });
 
 gulp.task('watch', function () {
-    gulp.watch('./wp-content/themes/petpet/assets/sass/**/*.sass', ['sass']);
+    gulp.watch('./wp-content/themes/provaccon/assets/sass/**/*.sass', ['sass']);
 });
