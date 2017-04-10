@@ -28,7 +28,7 @@ $wp_file_descriptions = array(
 	'taxonomy.php'          => __( 'Taxonomy Template' ),
 	'category.php'          => __( 'Category Template' ),
 	'tag.php'               => __( 'Tag Template' ),
-	'home.php'              => __( 'Posts Page' ),
+	'front-page.php'              => __( 'Posts Page' ),
 	'search.php'            => __( 'Search Results' ),
 	'date.php'              => __( 'Date Template' ),
 	// Content
