@@ -71,7 +71,7 @@
                 <li>gerenciaoperativa@provaccon.com </li>
                 <li>comercial1@provaccon.com</li>
             </ul>
-            <ul class="row  col-16 Social">
+            <ul class="row  col-16   Social">
                 <li>
                     <svg width="22px" height="22px" viewBox="683 567 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="Group" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(683.000000, 567.000000)">

@@ -19,14 +19,6 @@
 
 <body <?php body_class(); ?> data-urlBody="<?php bloginfo('url') ?>">
 <header class="Header <?php if (is_front_page()) echo 'Header-index' ?>">
-<<<<<<< HEAD
-    <div class="Header-buttonNav">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-=======
->>>>>>> 02c6572d88e0ee0a1815771c5708ce5c28ea0247
     <div class="Header-bar">
         <div class="Header-barContent row">
             <figure class="Header-logo col-2">
@@ -54,11 +46,7 @@
             <?php while (have_posts()) : the_post(); ?>
                 <figure class="row center bottom"
                         style="background-image: url( <?php echo get_the_post_thumbnail_url(); ?> );">
-<<<<<<< HEAD
                     <div class="Header-bannerTitle col-16 small-16">
-=======
-                    <div class="Header-bannerTitle col-16">
->>>>>>> 02c6572d88e0ee0a1815771c5708ce5c28ea0247
                         <h1><?php the_title() ?></h1>
                     </div>
                 </figure>

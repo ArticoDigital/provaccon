@@ -6,11 +6,7 @@
             <figure class="Footer-logo">
                 <img src="<?php bloginfo('template_url') ?>/assets/img/logo-footer.png" alt="">
             </figure>
-<<<<<<< HEAD
-            <section class="row Footer-info">
-=======
             <section class="row">
->>>>>>> 02c6572d88e0ee0a1815771c5708ce5c28ea0247
                 <article>
                     <h4 class="row center">CONTACTÁNOS
                         <hr>
@@ -33,11 +29,7 @@
                         <li>gerenciaoperativa@provaccon.com</li>
                         <li>comercial1@provaccon.com</li>
                     </ul>
-<<<<<<< HEAD
                     <ul class="row  col-16  small-16 Social">
-=======
-                    <ul class="row  col-16 Social">
->>>>>>> 02c6572d88e0ee0a1815771c5708ce5c28ea0247
                         <li>
                             <svg width="22px" height="22px" viewBox="683 567 22 22" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -94,11 +86,7 @@
             </section>
         <?php endif; ?>
     </div>
-<<<<<<< HEAD
     <div class=" Footer-by col-16  small-16">
-=======
-    <div class=" Footer-by col-16">
->>>>>>> 02c6572d88e0ee0a1815771c5708ce5c28ea0247
         <p class="row end">
             Desarrollado por: <a href="http://artico.io" target="_blank"> Ártico Digital</a>
         </p>
