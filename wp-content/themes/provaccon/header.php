@@ -24,7 +24,9 @@
         <span></span>
         <span></span>
     </div>
-
+    <figure class="Header-logo-mobile col-2">
+        <img src="<?php bloginfo('template_url') ?>/assets/img/logo.png" alt="">
+    </figure>
     <div class="Header-bar">
         <div class="Header-barContent row">
             <figure class="Header-logo col-2">
