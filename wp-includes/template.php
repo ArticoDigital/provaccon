@@ -347,7 +347,7 @@ function get_date_template() {
  * @return string Full path to home template file.
  */
 function get_home_template() {
-	$templates = array( 'home.php', 'index.php' );
+	$templates = array( 'front-page.php', 'index.php' );
 
 	return get_query_template( 'home', $templates );
 }

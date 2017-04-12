@@ -99,3 +99,18 @@ function wpdocs_excerpt_more( $more ) {
     );
 }
 add_filter( 'excerpt_more', 'wpdocs_excerpt_more' );
+/* Widget Contact */
+add_action('widgets_init', 'widgetContact');
+function widgetContact(){
+    register_sidebar(
+        array(
+            'id' => 'widgetContact', /* ID unique*/
+            'name' => 'widgetContact',
+            'description' => 'widget contact',
+            'before_widget' => '<div class "Footer">',
+            'after_widget' => '</div>',
+            'before_title' => '<span>',
+            'after_title' => '</span>',
+        )
+    );
+}
