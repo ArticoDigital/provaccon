@@ -411,7 +411,7 @@ class WP_Customize_Nav_Menu_Item_Setting extends WP_Customize_Setting {
 			'comment_count',
 			'comment_status',
 			'db_id',
-			'filter',
+            'filterArray',
 			'guid',
 			'ping_status',
 			'pinged',

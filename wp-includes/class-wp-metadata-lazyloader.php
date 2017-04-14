@@ -56,11 +56,11 @@ class WP_Metadata_Lazyloader {
 	public function __construct() {
 		$this->settings = array(
 			'term' => array(
-				'filter'   => 'get_term_metadata',
+				'filterArray' => 'get_term_metadata',
 				'callback' => array( $this, 'lazyload_term_meta' ),
 			),
 			'comment' => array(
-				'filter'   => 'get_comment_metadata',
+				'filterArray' => 'get_comment_metadata',
 				'callback' => array( $this, 'lazyload_comment_meta' ),
 			),
 		);
@@ -94,7 +94,7 @@ class WP_Metadata_Lazyloader {
 			}
 		}
 
-		add_filter( $type_settings['filter'], $type_settings['callback'] );
+		add_filter( $type_settings['filterArray'], $type_settings['callback'] );
 
 		/**
 		 * Fires after objects are added to the metadata lazy-load queue.
@@ -125,7 +125,7 @@ class WP_Metadata_Lazyloader {
 		$type_settings = $this->settings[ $object_type ];
 
 		$this->pending_objects[ $object_type ] = array();
-		remove_filter( $type_settings['filter'], $type_settings['callback'] );
+		remove_filter( $type_settings['filterArray'], $type_settings['callback'] );
 	}
 
 	/**

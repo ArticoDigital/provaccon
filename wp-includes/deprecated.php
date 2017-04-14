@@ -2636,7 +2636,7 @@ function sanitize_user_object($user, $context = 'display') {
 			$user['ID'] = 0;
 		foreach ( array_keys($user) as $field )
 			$user[$field] = sanitize_user_field($field, $user[$field], $user['ID'], $context);
-		$user['filter'] = $context;
+		$user['filterArray'] = $context;
 	}
 
 	return $user;

@@ -65,7 +65,7 @@ class WP_Widget_Text extends WP_Widget {
 		if ( ! empty( $title ) ) {
 			echo $args['before_title'] . $title . $args['after_title'];
 		} ?>
-			<div class="textwidget"><?php echo !empty( $instance['filter'] ) ? wpautop( $text ) : $text; ?></div>
+			<div class="textwidget"><?php echo !empty( $instance['filterArray'] ) ? wpautop( $text ) : $text; ?></div>
 		<?php
 		echo $args['after_widget'];
 	}
@@ -89,7 +89,7 @@ class WP_Widget_Text extends WP_Widget {
 		} else {
 			$instance['text'] = wp_kses_post( $new_instance['text'] );
 		}
-		$instance['filter'] = ! empty( $new_instance['filter'] );
+		$instance['filterArray'] = ! empty( $new_instance['filterArray'] );
 		return $instance;
 	}
 
@@ -103,7 +103,7 @@ class WP_Widget_Text extends WP_Widget {
 	 */
 	public function form( $instance ) {
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '', 'text' => '' ) );
-		$filter = isset( $instance['filter'] ) ? $instance['filter'] : 0;
+		$filter = isset( $instance['filterArray'] ) ? $instance['filterArray'] : 0;
 		$title = sanitize_text_field( $instance['title'] );
 		?>
 		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
@@ -112,7 +112,7 @@ class WP_Widget_Text extends WP_Widget {
 		<p><label for="<?php echo $this->get_field_id( 'text' ); ?>"><?php _e( 'Content:' ); ?></label>
 		<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id('text'); ?>" name="<?php echo $this->get_field_name('text'); ?>"><?php echo esc_textarea( $instance['text'] ); ?></textarea></p>
 
-		<p><input id="<?php echo $this->get_field_id('filter'); ?>" name="<?php echo $this->get_field_name('filter'); ?>" type="checkbox"<?php checked( $filter ); ?> />&nbsp;<label for="<?php echo $this->get_field_id('filter'); ?>"><?php _e('Automatically add paragraphs'); ?></label></p>
+		<p><input id="<?php echo $this->get_field_id('filterArray'); ?>" name="<?php echo $this->get_field_name('filterArray'); ?>" type="checkbox"<?php checked( $filter ); ?> />&nbsp;<label for="<?php echo $this->get_field_id('filterArray'); ?>"><?php _e('Automatically add paragraphs'); ?></label></p>
 		<?php
 	}
 }

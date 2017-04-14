@@ -6,25 +6,46 @@
  * Date: 13/04/17
  * Time: 11:59 PM
  */
-class FilterArray
+class PostPdf
 {
+    private $number;
+    private $metaKey;
 
-    Static function filtrar_array(&$array, $clave_orden)
+    function __construct($number)
     {
-        $array_filtrado = array(); // inicializamos un nuevo array
-        // creamos un bucle foreach para recorrer el array original y “acomodar” los datos
-        foreach ($array as $index => $array_value) {
-            // guardamos temporalmente el nombre de la categoría
-            $value = $array_value->$clave_orden;
-            // eliminamos la categoria del registro, ya no la necesitaremos
-            unset($array_value->$clave_orden);
-            // creamos una clave en nuestro nuevo array, con el nombre de la categoria
-            // y como valor le sumamos el array conteniendo producto y precio
-            $array_filtrado[$value][] = $array_value;
-            /* en cada iteración, si el nombre de la categoría ya figura como clave, será
-               sobreescrito y se le agregará como nuevo valor, solo los datos de producto
-               y precio. Si la categoria no existe, ahí sí, creará la nueva clave */
+        $this->number = $number;
+    }
+
+    function getHtml()
+    {
+        global $wpdb;
+        $posts = $wpdb->get_results(
+            "SELECT pro_posts.post_title,pro_posts.post_name, pro_posts.post_content, pro_posts.post_status, pro_postmeta.*
+    FROM pro_postmeta INNER  JOIN  pro_posts 
+    ON pro_postmeta.`post_id` = `pro_posts`.id  
+    where post_id = 
+    ( SELECT post_id FROM pro_postmeta   where meta_key = 'numero_cerficado' and meta_value = " . $this->number . "
+    )");
+        if (!$posts) {
+            return false;
         }
-        $array = $array_filtrado; // modificamos automáticamente nuestro array global $row
+        $metaKey = [];
+        foreach ($posts as $post) {
+            $metaKey[$post->meta_key] = $post->meta_value;
+        }
+        $metaKey['post_title']= $post->post_title;
+        $metaKey['post_content']= $post->post_content;
+        $metaKey['post_status']= $post->post_status;
+        $metaKey['post_name']= $post->post_name;
+        $this->metaKey = $metaKey;
+        return $this->generateHtml();
+    }
+    public function getName(){
+        return $this->metaKey['post_name'] . '-' . $this->metaKey['numero_cerficado'] . '.pdf';
+    }
+    private function generateHtml(){
+
+        return $this->metaKey['post_title']. ' - ' . $this->metaKey['post_content'];
+
     }
 }

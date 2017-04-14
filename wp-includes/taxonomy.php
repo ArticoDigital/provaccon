@@ -1401,7 +1401,7 @@ function sanitize_term($term, $taxonomy, $context = 'display') {
 	if ( $do_object )
 		$term->filter = $context;
 	else
-		$term['filter'] = $context;
+		$term['filterArray'] = $context;
 
 	return $term;
 }

@@ -780,7 +780,7 @@ function wp_generate_tag_cloud( $tags, $args = '' ) {
 		'smallest' => 8, 'largest' => 22, 'unit' => 'pt', 'number' => 0,
 		'format' => 'flat', 'separator' => "\n", 'orderby' => 'name', 'order' => 'ASC',
 		'topic_count_text' => null, 'topic_count_text_callback' => null,
-		'topic_count_scale_callback' => 'default_topic_count_scale', 'filter' => 1,
+		'topic_count_scale_callback' => 'default_topic_count_scale', 'filterArray' => 1,
 	);
 
 	$args = wp_parse_args( $args, $defaults );
@@ -920,7 +920,7 @@ function wp_generate_tag_cloud( $tags, $args = '' ) {
 			break;
 	}
 
-	if ( $args['filter'] ) {
+	if ( $args['filterArray'] ) {
 		/**
 		 * Filters the generated output of a tag cloud.
 		 *

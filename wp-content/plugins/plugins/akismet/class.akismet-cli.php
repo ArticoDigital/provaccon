@@ -1,4 +1,4 @@
-<?php
+<º<?php
 
 WP_CLI::add_command( 'akismet', 'Akismet_CLI' );
 

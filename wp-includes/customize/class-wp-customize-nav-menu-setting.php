@@ -279,7 +279,7 @@ class WP_Customize_Nav_Menu_Setting extends WP_Customize_Setting {
 				'count'            => 0,
 				'term_group'       => 0,
 				'taxonomy'         => self::TAXONOMY,
-				'filter'           => 'raw',
+				'filterArray' => 'raw',
 			), $setting_value );
 
 			array_splice( $menus, $index, ( -1 === $index ? 0 : 1 ), array( $menu_obj ) );
@@ -375,7 +375,7 @@ class WP_Customize_Nav_Menu_Setting extends WP_Customize_Setting {
 				'count'            => 0,
 				'term_group'       => 0,
 				'taxonomy'         => self::TAXONOMY,
-				'filter'           => 'raw',
+				'filterArray' => 'raw',
 			), $setting_value );
 
 		return $menu_obj;

@@ -192,7 +192,7 @@ function edit_post( $post_data = null ) {
 		$post_data = &$_POST;
 
 	// Clear out any data in internal vars.
-	unset( $post_data['filter'] );
+	unset( $post_data['filterArray'] );
 
 	$post_ID = (int) $post_data['post_ID'];
 	$post = get_post( $post_ID );
@@ -731,7 +731,7 @@ function wp_write_post() {
 	$_POST['post_mime_type'] = '';
 
 	// Clear out any data in internal vars.
-	unset( $_POST['filter'] );
+	unset( $_POST['filterArray'] );
 
 	// Edit don't write if we have a post id.
 	if ( isset( $_POST['post_ID'] ) )

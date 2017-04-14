@@ -1910,13 +1910,13 @@ function sanitize_post( $post, $context = 'display' ) {
 		$post->filter = $context;
 	} elseif ( is_array( $post ) ) {
 		// Check if post already filtered for this context.
-		if ( isset($post['filter']) && $context == $post['filter'] )
+		if ( isset($post['filterArray']) && $context == $post['filterArray'] )
 			return $post;
 		if ( !isset($post['ID']) )
 			$post['ID'] = 0;
 		foreach ( array_keys($post) as $field )
 			$post[$field] = sanitize_post_field($field, $post[$field], $post['ID'], $context);
-		$post['filter'] = $context;
+		$post['filterArray'] = $context;
 	}
 	return $post;
 }
@@ -2992,7 +2992,7 @@ function wp_insert_post( $postarr, $wp_error = false ) {
 
 	$postarr = wp_parse_args($postarr, $defaults);
 
-	unset( $postarr[ 'filter' ] );
+	unset( $postarr['filterArray'] );
 
 	$postarr = sanitize_post($postarr, 'db');
 
