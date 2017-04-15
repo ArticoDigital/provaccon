@@ -44,8 +44,10 @@ class PostPdf
         return $this->metaKey['post_name'] . '-' . $this->metaKey['numero_cerficado'] . '.pdf';
     }
     private function generateHtml(){
-
-        return $this->metaKey['post_title']. ' - ' . $this->metaKey['post_content'];
+        $html = "";
+        $html .="<h1> Certificado de anclaje para soportar caidas </h1>";
+        $html .= $this->metaKey['post_title']. ' - ' . $this->metaKey['post_content'];
+        return $html    ;
 
     }
 }
