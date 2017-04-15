@@ -11,6 +11,7 @@ if(!$html = $postPdf->getHtml()){
 $dompdf = new Dompdf();
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4');
+$dompdf->render();
 $dompdf->stream($postPdf->getName());
 
 
