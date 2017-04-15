@@ -161,13 +161,12 @@ function add_query_vars($aVars) {
     return $aVars;
 }
 add_filter('query_vars', 'add_query_vars');
-function add_rewrite_rules($aRules) {
-
-    $aNewRules = array('audios/([^/]+)/?$' => 'index.php?pagename=audios&cat_audios=asas');
+function add_rewrite_rules() {
 
 
-    print_r(add_rewrite_rule('audios/([^/]+)/?$' ,'index.php?pagename=audios&cat_audios=$matches[1]','top'));
-    exit();
+    add_rewrite_tag( '%cat_audios%', '([0-9]*)' );
+   add_rewrite_rule('audios/([^/]+)/?$' ,'index.php?pagename=audios&cat_audios=$matches[1]','top');
+
 }
 // hook add_rewrite_rules function into rewrite_rules_array
 add_action('init', 'add_rewrite_rules');
