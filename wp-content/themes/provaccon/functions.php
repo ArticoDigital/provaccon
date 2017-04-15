@@ -144,3 +144,54 @@ function form_certificate($atts)
 }
 
 add_shortcode('CERTIFICATE', 'form_certificate');
+
+
+add_action( 'show_user_profile', 'add_user_meta_fields' );
+add_action( 'edit_user_profile', 'add_user_meta_fields' );
+add_action( 'personal_options_update', 'update_user_meta_fields' );
+add_action( 'edit_user_profile_update', 'update_user_meta_fields' );
+
+function update_user_meta_fields( $user_id ) {
+    if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
+    update_user_meta( $user_id, 'status_user_audios', $_POST['status_user_audios'] );
+}
+
+function add_query_vars($aVars) {
+    $aVars[] = "cat_audios"; // represents the name of the product category as shown in the URL
+    return $aVars;
+}
+add_filter('query_vars', 'add_query_vars');
+function add_rewrite_rules($aRules) {
+
+    $aNewRules = array('audios/([^/]+)/?$' => 'index.php?pagename=audios&cat_audios=asas');
+    print_r('sdsdsdadsdsd');exit;
+    $aRules = $aNewRules + $aRules;
+    return $aRules;
+}
+// hook add_rewrite_rules function into rewrite_rules_array
+apply_filters('rewrite_rules_array', 'add_rewrite_rules');
+
+
+
+function add_user_meta_fields( $user ) { ?>
+
+
+    <table class="form-table">
+        <tr>
+            <th><label for="mincraftUser">Status</label></th>
+            <td>
+                <select name="status_user_audios" id="status_user_audios">
+                    <option value="0" >Desactivado</option>
+                    <option value="1"
+                        <?php
+                        if(esc_attr( get_the_author_meta( 'status_user_audios', $user->ID ) ) == 1){
+                            echo "selected";
+                        }
+                        ; ?>><A></A>ctivado</option>
+                </select>
+                <span class="description">Seleccione el estado de la suscripción</span>
+            </td>
+        </tr>
+    </table>
+
+<?php }
