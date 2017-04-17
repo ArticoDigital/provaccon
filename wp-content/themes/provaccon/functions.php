@@ -166,7 +166,6 @@ function add_query_vars($aVars)
 add_filter('query_vars', 'add_query_vars');
 function add_rewrite_rules()
 {
-    print_r('ahh');
     add_rewrite_rule('^audios/([^/]*)/?$', 'index.php?pagename=audios&cat_audios=$matches[1]', 'top');
 }
 
