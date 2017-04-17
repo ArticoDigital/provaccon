@@ -11,7 +11,7 @@ class NF_Fields_Recaptcha extends NF_Abstracts_Field
 
     protected $_section = 'misc';
 
-    protected $_icon = 'filterArray';
+    protected $_icon = 'filter';
 
     protected $_templates = 'recaptcha';
 
