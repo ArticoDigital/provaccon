@@ -2,6 +2,7 @@
 <div class="Page-content">
     <?php
     $category = get_query_var('cat_audios');
+    print_r($category);exit();
     the_content() ?>
     <?php wp_nav_menu(array('theme_location' => 'menuAudios', 'container' => 'div')) ?>
     <div class="Audios">
