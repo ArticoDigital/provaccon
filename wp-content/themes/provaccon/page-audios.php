@@ -27,7 +27,7 @@
             <p class="note"> ► Ubiquese sobre el audio y arrastre arriba o abajo según el orden que desea reproducir y seleccione reproducir todos automaticamente
                 .</p>
             <div class="row end middle Play-all">
-                <span>Reproducir todos automaticamente</span><input type="checkbox" id="AutoPlay">
+                <span>Reproducir todos automaticamente</span><input type="checkbox" checked id="AutoPlay">
             </div>
             <section id="sortable">
                 <?php
