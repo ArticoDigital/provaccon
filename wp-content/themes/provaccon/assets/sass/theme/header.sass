@@ -355,8 +355,6 @@ h3
   background: #0c9a1a
   border: none!important
   width: calc(100vw - 20px) !important
-  @include respond-to(medium)
-    max-width: rem(140)
 .Contact-sidebar
   font-family: $header--font-family
   color: #828282 !important
@@ -426,12 +424,19 @@ blockquote
   background-position: rem(6) rem(5)
 .Audios
   margin-bottom: rem(40)
+  .note
+    font-weight: bold
+    color: #2e2e2e
   p
     margin: rem(20) rem(10) rem(10)
     font-size: rem(16)
 .Audio-content
   padding: rem(10)
   border-bottom: 1px gray dotted
+  cursor: all-scroll
+  &:hover
+    background: #e2e2e2
+    border-top: 1px gray dotted
 #menu-audios,#menu-menuaudios
   text-transform: uppercase
   padding-left: 0
