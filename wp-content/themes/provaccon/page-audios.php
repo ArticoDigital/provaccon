@@ -11,7 +11,6 @@ if ($_POST['_token'] == '$KJMM99osods$=)/' && is_user_logged_in()) {
     } else {
         $sql = "INSERT INTO pro_usermeta (user_id, meta_key,meta_value) 
 values ('$userId','date_audio','" . $_POST['date'] . "')";
-
     };
     $wpdb->query($sql);
 }
