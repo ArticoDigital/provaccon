@@ -16,7 +16,7 @@ $options->set('isRemoteEnabled', true);
 $options->set('debugKeepTemp', TRUE);
 $options->set('isHtml5ParserEnabled', true);
 
-$dompdf = new Dompdf($options);
+$dompdf = new Dompdf();
 
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4');
