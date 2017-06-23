@@ -45,7 +45,7 @@ class PostPdf
     }
     private function generateHtml(){
         $html = "";
-        $html .=  "<img width='700' src='/Users/juan2ramos/Sites/provaccon/wp-content/themes/provaccon/assets/img/header.png' >";
+        $html .=  "<img width='700px' src='/wp-content/themes/provaccon/assets/img/header.png' >";
         $html .="<h1> Certificado de anclaje para soportar caidas </h1>";
         $html .= $this->metaKey['post_title']. ' - ' . $this->metaKey['post_content'];
         return $html    ;
