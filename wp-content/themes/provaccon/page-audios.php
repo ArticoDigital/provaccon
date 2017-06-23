@@ -128,29 +128,31 @@ wp_enqueue_style('style',
         if ($next && $("#AutoPlay").is(':checked'))
             $next.play();
     });
+    if ($("#dataDate").data('date')) {
 
-    var ds = $("#dataDate").data('date').split(','),
-        i = new Date(ds[0], ds[1], ds[2], ds[3], ds[4], ds[5]),
-        cadi = i.getHours() + ":" + i.getMinutes() + ":" + i.getSeconds();
-    var p = new Date()
-    cadp = p.getHours() + ":" + p.getMinutes() + ":" + p.getSeconds();
-    if ($("#dataDate").data('date') && ( cadi > cadp)) {
 
-        var refreshIntervalId = setInterval(
-            function () {
+        var ds = $("#dataDate").data('date').split(','),
+            i = new Date(ds[0], ds[1], ds[2], ds[3], ds[4], ds[5]),
+            cadi = i.getHours() + ":" + i.getMinutes() + ":" + i.getSeconds();
+        var p = new Date()
+        cadp = p.getHours() + ":" + p.getMinutes() + ":" + p.getSeconds();
+        if (cadi > cadp) {
 
-                var f = new Date(),
-                    cadf = f.getHours() + ":" + f.getMinutes() + ":" + f.getSeconds();
-                console.log(cadi + " - "  + cadf)
-                if (cadi == cadf) {
+            var refreshIntervalId = setInterval(
+                function () {
 
-                    $v[0].play();
-                    clearInterval(refreshIntervalId);
-                }
-            },
-            1000);
+                    var f = new Date(),
+                        cadf = f.getHours() + ":" + f.getMinutes() + ":" + f.getSeconds();
+                    console.log(cadi + " - " + cadf)
+                    if (cadi == cadf) {
+
+                        $v[0].play();
+                        clearInterval(refreshIntervalId);
+                    }
+                },
+                1000);
+        }
     }
-
 
     $("#date").datetimepicker({
         timeFormat: "hh:mm tt",
