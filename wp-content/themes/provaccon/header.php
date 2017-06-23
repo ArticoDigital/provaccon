@@ -28,13 +28,20 @@
         <img src="<?php bloginfo('template_url') ?>/assets/img/logo.png" alt="">
     </figure>
     <div class="Header-bar">
-        <div class="Header-barContent row">
+        <div class="Header-barContent row middle">
             <figure class="Header-logo col-2">
                 <img src="<?php bloginfo('template_url') ?>/assets/img/logo.png" alt="">
             </figure>
-            <div class="content-menu center col-14 small-16">
+            <div class="content-menu center col-12 small-16">
                 <?php wp_nav_menu(array('theme_location' => 'menuHeader', 'container' => 'nav')) ?>
             </div>
+            <div class="col-2 small-16 row center Login">
+                <?php echo (is_user_logged_in())
+                    ?' <a href="/wp-login.php?action=logout">Cerrar Sesión</a>'
+                    :' <a href="/login">Iniciar Sesión</a>' ;
+                ?>
+            </div>
+
         </div>
     </div>
     <?php if (is_front_page()): ?>

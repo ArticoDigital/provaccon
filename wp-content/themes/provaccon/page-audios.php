@@ -1,5 +1,23 @@
-<?php get_header(); ?>
-<div class="Page-content">
+<?php
+
+global $wpdb;
+$send = false;
+if ($_POST['_token'] == '$KJMM99osods$=)/' && is_user_logged_in()) {
+    $userId = get_current_user_id();
+    $exits = $wpdb->get_results('SELECT count(*) as count FROM pro_usermeta WHERE user_id = ' . $userId .
+        ' and meta_key = "date_audio" ', OBJECT);
+    if ($exits[0]->count) {
+        $sql = "UPDATE pro_usermeta SET meta_value = '" . $_POST['date'] . "' WHERE  meta_key = 'date_audio'";
+    } else {
+        $sql = "INSERT INTO pro_usermeta (user_id, meta_key,meta_value) 
+values ('$userId','date_audio','" . $_POST['date'] . "')";
+
+    };
+    $wpdb->query($sql);
+}
+
+get_header(); ?>
+<div class="Page - content">
     <?php
     $category = get_query_var('cat_audios');
     the_content() ?>
@@ -23,12 +41,38 @@
         $query = new WP_Query($args);
         $index = 0;
         if (is_user_logged_in() && ($current_user->allcaps['administrator'] || get_user_meta($current_user->ID, 'status_user_audios', true))) :
+            $userId = get_current_user_id();
+            $results = $wpdb->get_results('SELECT * FROM pro_usermeta WHERE user_id = ' . $userId .
+                ' and meta_key = "date_audio" ', OBJECT);
+
             ?>
-            <p class="note"> ► Ubiquese sobre el audio y arrastre arriba o abajo según el orden que desea reproducir y seleccione reproducir todos automaticamente
+            <p class="note"> ► Ubiquese sobre el audio y arrastre arriba o abajo según el orden que desea reproducir y
+                seleccione reproducir todos automaticamente
                 .</p>
-            <div class="row end middle Play-all">
+            <div class="row end middle Play - all">
                 <span>Reproducir todos automaticamente</span><input type="checkbox" checked id="AutoPlay">
             </div>
+            <form action="" method="post" class="Date-form">
+                <label for="date">Seleccione la fecha para que se reproduzca automáticamente.
+                    Recuerde que debe tener el navegador con la página abierta.</label>
+                <input type="text" id="date" name="date" placeholder="Ingresa la fecha">
+                <input type="hidden" name="_token" value="$KJMM99osods$=)/">
+
+                <button type="submit">GUARDAR</button>
+                <?php if ($results): ?>
+                    <?php
+                    $dateArray = explode(' ', $results[0]->meta_value);
+                    $one = explode(',', str_replace('/', ',', $dateArray[0]));
+                    $two = explode(':', $dateArray[1]);
+                    $hour = ($dateArray[2] == 'pm' && $two[0] > '12') ? $two[0] + 12 : $two[0];
+                    $dateF = $one[2] . ',' . $one[1] . ',' . $one[0] . ',' . $hour . ',' . $two[1] . ',0';
+
+                    ?>
+                    <div data-date="<?php echo $dateF ?>" id="dataDate">
+                        Tiene programada la reproducción para <?php echo $results[0]->meta_value ?>
+                    </div>
+                <?php endif ?>
+            </form>
             <section id="sortable">
                 <?php
                 while ($query->have_posts()) : $query->the_post(); ?>
@@ -44,7 +88,7 @@
                     Regístrate para obtener acceso inmediato a este curso completo y muchos otros como éste, además
                     de contenido nuevo cada semana.2
                 </p>
-                <p><a href="<?php echo get_site_url() . '/login' ?>">INGRESAR</a></p>
+                <p><a href=" <?php echo get_site_url() . '/login' ?>">INGRESAR</a></p>
                 <p><a href="<?php echo get_site_url() . '/registro' ?>">REGISTRARSE</a></p>
             </div>
             <?php
@@ -65,10 +109,15 @@
         ?>
     </div>
 </div>
-
+<?php
+wp_enqueue_style('style',
+    'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css');
+?>
 
 <?php get_footer(); ?>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="<?php bloginfo('template_url') ?>/assets/js/date.js"></script>
+
 
 <script>
 
@@ -76,9 +125,64 @@
     var $v = $('audio');
     $v.on('ended', function () {
         var $next = $(this).parents('article').next().find('audio')[0];
-        if ( $next && $("#AutoPlay").is(':checked'))
+        if ($next && $("#AutoPlay").is(':checked'))
             $next.play();
     });
+
+    var ds = $("#dataDate").data('date').split(','),
+        i = new Date(ds[0], ds[1], ds[2], ds[3], ds[4], ds[5]),
+        cadi = i.getHours() + ":" + i.getMinutes() + ":" + i.getSeconds();
+    var p = new Date()
+    cadp = p.getHours() + ":" + p.getMinutes() + ":" + p.getSeconds();
+    if ($("#dataDate").data('date') && ( cadi > cadp)) {
+
+        var refreshIntervalId = setInterval(
+            function () {
+
+                var f = new Date(),
+                    cadf = f.getHours() + ":" + f.getMinutes() + ":" + f.getSeconds();
+                console.log(cadi + " - "  + cadf)
+                if (cadi == cadf) {
+
+                    $v[0].play();
+                    clearInterval(refreshIntervalId);
+                }
+            },
+            1000);
+    }
+
+
+    $("#date").datetimepicker({
+        timeFormat: "hh:mm tt",
+        timeText: 'Tiempo',
+        hourText: 'Hora',
+        minuteText: 'Minutos',
+        secondText: 'Segundos',
+        currentText: 'Ahora',
+        closeText: 'Cerrar',
+        controlType: 'select',
+
+    });
+    $.datepicker.regional['es'] = {
+        closeText: 'Cerrar',
+        prevText: '<Ant',
+        nextText: 'Sig>',
+        currentText: 'Hoy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        weekHeader: 'Sm',
+        dateFormat: 'dd/mm/yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: '',
+
+    };
+    $.datepicker.setDefaults($.datepicker.regional['es']);
+
 
 </script>
 

@@ -1,7 +1,8 @@
 .Header-index
   height: 100vh
+
 .Header-bar
-  background: rgb(49,51,50)
+  background: rgb(49, 51, 50)
   position: fixed
   top: 0
   left: 0
@@ -9,20 +10,21 @@
   z-index: 2
   height: 100vh
   transform: translateX(100vh)
-  transition: all 400ms  ease-in-out
+  transition: all 400ms ease-in-out
   &.open
     transform: translateX(0)
-  @include respond-to(medium)
+  @include respond-to(large)
     display: block
     height: auto
     transform: translateX(0)
+
 .Header-buttonNav
-  background: rgba(0,0,0,0.9)
+  background: rgba(0, 0, 0, 0.9)
   position: fixed
   right: rem(10)
   top: rem(10)
   z-index: 4
-  @include respond-to(medium)
+  @include respond-to(large)
     display: none
   span
     display: block
@@ -31,6 +33,7 @@
     margin: rem(6) rem(5)
     background: white
     cursor: pointer
+
 .Header-banner
   figure
     margin: 0
@@ -39,15 +42,17 @@
     height: rem(350)
     background-size: cover
     background-position: center
-    @include respond-to(medium)
+    @include respond-to(large)
       margin: rem(50) 0
+
 .Header-bannerTitle
-  background: rgba(0,0,0,0.6)
+  background: rgba(0, 0, 0, 0.6)
   h1
     color: white
     max-width: rem(680)
     margin: auto
     padding: rem(15)
+
 .Header-logo-mobile
   position: absolute
   width: rem(80)
@@ -55,46 +60,56 @@
   top: 0
   z-index: 2
   margin: rem(10)
-  @include respond-to(medium)
+  @include respond-to(large)
     display: none
+
 .Header-logo
   max-width: rem(100)
   padding: 0
   margin: 0
   img
     box-shadow: 0 rem(2) rem(8) rem(2) rgba(0, 0, 0, 0.4)
+
 .Header-barContent
   max-width: rem(1000)
   margin: auto
   max-height: rem(50)
+
 .menu
   text-align: center
   display: block !important
   align-items: center
   justify-content: center
-  @include respond-to(medium)
+  @include respond-to(large)
     display: flex !important
+
 .menu > li
-    padding: rem(10)
-    position: relative
-.menu > li  a
-    color: white
-    font-size: rem(12)
-    font-weight: 300
+  padding: rem(10)
+  position: relative
+
+.menu > li a
+  color: white
+  font-size: rem(12)
+  font-weight: 300
+
 .menu li.current_page_item a
-    color: rgb(31,187,218)
+  color: rgb(31, 187, 218)
+
 .content-menu ul
   display: none
+
 .content-menu > ul
   display: flex !important
-.content-menu  ul li:hover ul.sub-menu
-    display: block
+
+.content-menu ul li:hover ul.sub-menu
+  display: block
+
 ul.sub-menu
   background: #313332
   left: 0
   top: rem(40)
   padding: rem(2) 0
-  @include respond-to(medium)
+  @include respond-to(large)
     position: absolute
     width: rem(220)
   &.open
@@ -105,29 +120,31 @@ ul.sub-menu
     padding: rem(5) rem(6)
     line-height: .9
     &:hover
-      background: rgb(212	,208,199	)
+      background: rgb(212, 208, 199)
       a
         color: #313332
+
 .Header-slide
   background-size: cover
   background-position: center
   width: 100vw
   height: 100vh
-  @include respond-to(medium)
+  @include respond-to(large)
     height: calc(100vh - 50px)
+
 .Header
   .owl-carousel
     width: 100vw
     position: relative
 
     position: relative
-    @include respond-to(medium)
+    @include respond-to(large)
       top: rem(50)
     p
       position: absolute
       font-size: rem(26)
       color: white
-      background: rgba(0,0,0,0.9)
+      background: rgba(0, 0, 0, 0.9)
       padding: rem(16) rem(22)
       top: calc(50% - 100px)
       right: 0
@@ -146,23 +163,24 @@ ul.sub-menu
     span
       display: inline-block
       border-radius: 50%
-      background: rgb(127,	126,	124	)
+      background: rgb(127, 126, 124)
       height: rem(15)
       width: rem(15)
       margin: rem(4)
+
 main
   max-width: rem(1080)
   margin: auto
+
 h2
-  color: rgb(47,	49,	48	)
+  color: rgb(47, 49, 48)
   font-size: rem(28)
   font-weight: 800
+
 h3
   font-size: rem(13)
   line-height: rem(15)
   font-weight: 800
-
-
 
 .Products
   margin: rem(40) 0 rem(24)
@@ -176,8 +194,9 @@ h3
     text-align: justify
     margin: rem(5) 0 0
     max-width: 100%
+
 .Clients
-  background: rgb(212	,208,199	)
+  background: rgb(212, 208, 199)
   padding: rem(14) 0
   h2
     text-align: center
@@ -187,6 +206,7 @@ h3
   img
     width: 220px
     height: inherit
+
 .Clients-content
   max-width: rem(900)
   margin: rem(25) auto
@@ -208,9 +228,11 @@ h3
     top: 0
     @include respond-to(medium)
       right: rem(-50)
+
 .Footer-content
   max-width: rem(1080)
   margin: auto
+
 .Footer
   background: #313332
   color: white
@@ -235,18 +257,21 @@ h3
     color: white
     font-weight: 800
     margin: rem(10) 0
+
 .Footer-logo
   max-width: rem(125)
   margin: auto
   @include respond-to(medium)
     margin: 1em rem(40)
+
 .Footer-info
   margin-left: rem(20)
   @include respond-to(medium)
     margin: 0
+
 .Footer-by
   color: white
-  background: rgb(37,	39,	38	)
+  background: rgb(37, 39, 38)
   padding: rem(10)
   a
     color: white
@@ -257,12 +282,11 @@ h3
     font-size: rem(12)
     max-width: rem(1080)
     margin: auto
+
 .Social
   margin: rem(10) 0
   li
     margin-right: rem(10)
-
-
 
 .Page-content
   img
@@ -289,11 +313,13 @@ h3
     font-size: .9375rem
     line-height: 1.2
     text-align: justify
+
 .owl-wrapper
   text-align: center
   display: flex !important
   align-items: center
-.Page-content   #tab_container_94 .wpsm_nav-tabs > li > a
+
+.Page-content #tab_container_94 .wpsm_nav-tabs > li > a
   font-family: $header--font-family !important
   text-align: left !important
   line-height: 1 !important
@@ -302,7 +328,7 @@ h3
   display: flex !important
   align-items: center
 
-.Page-content  #tab_container_94 .wpsm_nav-tabs  li.active  a, .Page-content #tab_container_94 .wpsm_nav-tabs > li.active > a:hover, .Page-content #tab_container_94 .wpsm_nav-tabs > li.active > a:focus
+.Page-content #tab_container_94 .wpsm_nav-tabs li.active a, .Page-content #tab_container_94 .wpsm_nav-tabs > li.active > a:hover, .Page-content #tab_container_94 .wpsm_nav-tabs > li.active > a:focus
   background: #d4d0c7 !important
   color: #313332 !important
 
@@ -314,6 +340,7 @@ h3
   padding: 0 !important
   @include respond-to(medium)
     padding: rem(20)
+
 .wpsm_nav-tabs
   padding: 0 !important
 
@@ -332,16 +359,20 @@ h3
       font-weight: 700
       top: rem(17)
       left: rem(6)
+
 .wpsm_nav-tabs li:nth-child(1) span::before
   content: 'BT1'
+
 .wpsm_nav-tabs li:nth-child(2) span::before
   content: 'BT2'
+
 .wpsm_nav-tabs li:nth-child(3) span::before
   content: 'BT3'
+
 .wpsm_nav-tabs li:nth-child(4) span::before
   content: 'BT4'
 
-.field-wrap > div input,.field-wrap > div textarea
+.field-wrap > div input, .field-wrap > div textarea
   border-radius: rem(4) !important
   border: rem(1) gray solid !important
   padding: rem(10) !important
@@ -349,12 +380,14 @@ h3
   max-width: calc(100vw - 20px)
   @include respond-to(medium)
     max-width: 100%
+
 .field-wrap input[type="button"]
-  padding: rem(10) rem(60)!important
+  padding: rem(10) rem(60) !important
   color: white
   background: #0c9a1a
-  border: none!important
+  border: none !important
   width: calc(100vw - 20px) !important
+
 .Contact-sidebar
   font-family: $header--font-family
   color: #828282 !important
@@ -406,10 +439,12 @@ h3
       width: initial
       margin-top: 0
       margin-left: rem(4)
+
 .Error-certificate
   background: #cc5252
   padding: rem(10)
   color: white
+
 blockquote
   padding: 1rem
   margin: 0 rem(20)
@@ -419,9 +454,9 @@ blockquote
 #wppb_register_pre_form_message
   display: none
 
-
 #play
   background-position: rem(6) rem(5)
+
 .Audios
   margin-bottom: rem(40)
   .note
@@ -430,6 +465,7 @@ blockquote
   p
     margin: rem(20) rem(10) rem(10)
     font-size: rem(16)
+
 .Audio-content
   padding: rem(10)
   border-bottom: 1px gray dotted
@@ -437,7 +473,8 @@ blockquote
   &:hover
     background: #e2e2e2
     border-top: 1px gray dotted
-#menu-audios,#menu-menuaudios
+
+#menu-audios, #menu-menuaudios
   text-transform: uppercase
   padding-left: 0
   justify-content: flex-start
@@ -448,7 +485,7 @@ blockquote
       display: block
       padding: rem(12) 2rem
       color: #D4D0CA
-      font-family: Lato,sans-serif
+      font-family: Lato, sans-serif
       background: #313332
       font-size: .9375rem
       line-height: 1.2
@@ -460,6 +497,7 @@ blockquote
     font-size: rem(15)
     color: #313332
     padding-right: rem(8)
+
 .Audio-Forms
   background: #D4D0CA
   margin: rem(20) 0
@@ -471,19 +509,41 @@ blockquote
   a
     display: block
     color: #D4D0CA
-    padding:  rem(12) 0
+    padding: rem(12) 0
     text-align: center
     width: rem(140)
     background: #313332
+
 #wppb-login-wrap, #wppb-register-user
   padding: rem(20)
+
 .form-submit, .login-submit
   input
     display: block
     color: #D4D0CA
-    padding:  rem(12) 0
+    padding: rem(12) 0
     text-align: center
     width: rem(140)
     background: #313332
     border: none
     text-transform: uppercase
+
+.Login a
+  display: block
+  background: white
+  text-align: center
+  padding: rem(6)
+  border-radius: rem(2)
+
+.Date-form
+  padding: rem(20) 0
+  input
+    padding: rem(10)
+    width: rem(300)
+    margin: rem(15) 0
+  button
+    border: none
+    padding: rem(12)
+    background: #313332
+    color: white
+    width: rem(128)
