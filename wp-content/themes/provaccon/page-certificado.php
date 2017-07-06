@@ -1,5 +1,5 @@
 <?php
-include 'dompdf/autoload.inc.php';
+include 'dompdf-master/autoload.inc.php';
 include 'functions/PostPdf.php';
 use Dompdf\Dompdf;
 use Dompdf\Options;
