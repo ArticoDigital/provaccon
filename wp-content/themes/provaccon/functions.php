@@ -8,6 +8,8 @@ add_theme_support('post-thumbnails');
 define('themeDir', get_template_directory() . '/');
 define('themeDirUri', get_template_directory_uri());
 /* Jquery + Main */
+
+require(themeDir . 'functions/certificates.php');
 add_action("wp_enqueue_scripts", "my_jquery_enqueue", 11);
 function my_jquery_enqueue()
 {
