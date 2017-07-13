@@ -10,6 +10,7 @@ define('themeDirUri', get_template_directory_uri());
 /* Jquery + Main */
 
 require(themeDir . 'functions/certificates.php');
+require(themeDir . 'functions/audios.php');
 add_action("wp_enqueue_scripts", "my_jquery_enqueue", 11);
 function my_jquery_enqueue()
 {
