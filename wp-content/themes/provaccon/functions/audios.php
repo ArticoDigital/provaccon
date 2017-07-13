@@ -23,10 +23,10 @@ function categoria_edit_meta_fields($term){
         <td>
             <label for="upload_image">
                 <input id="upload_image" type="text" size="36" name="term_meta[imagen]" value="<?php if( esc_attr( $term_meta['imagen'] ) != "") echo esc_attr( $term_meta['imagen'] ) ; ?>" />
-                <p><input id="upload_image_button" type="button" class='button button-primary' style='width: 100px' value="Subir Imagen" />
+                <p><input id="upload_image_button" type="button" class='button button-primary' style='width: 100px' value="Subir PDF" />
                     <i>Introduce una URL o establece un PDF de preguntas.</i></p>
             </label>
-            <p><?php if( esc_attr( $term_meta['imagen'] ) != "" ) echo "<table><tr><td><i><strong>Imagen actual</strong></i>:</td><td> <img src='".esc_attr( $term_meta['imagen'] )."'></td></tr></table>"; ?></p>
+            <p><?php if( esc_attr( $term_meta['imagen'] ) != "" ) echo "<table><tr><td><i><strong>PDF actual</strong></i>:</td><td> <img src='".esc_attr( $term_meta['imagen'] )."'></td></tr></table>"; ?></p>
         </td>
     </tr>
     <?php
@@ -59,7 +59,7 @@ function restrict_gallery() {
     global $typenow;
     global $wp_query;
     if ($typenow=='audios') {
-        $taxonomy = 'temario';
+        $taxonomy = 'Temario';
         $business_taxonomy = get_taxonomy($taxonomy);
         wp_dropdown_categories(array(
             'show_option_all' =>  __("Ver todas las categorias "),
@@ -79,7 +79,7 @@ function convert_id_to_taxonomy_term_in_query($query) {
     global $pagenow;
     $qv = &$query->query_vars;
     if ($pagenow=='edit.php' &&  $qv['post_type'] == 'audios' ) {
-        $term = get_term_by('id',$qv['temario'],'temario');
-        $qv['temario'] = $term->slug;
+        $term = get_term_by('id',$qv['temario'],'Temario');
+        $qv['Temario'] = $term->slug;
     }
 }
