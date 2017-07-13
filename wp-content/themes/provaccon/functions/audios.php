@@ -1,5 +1,5 @@
 <?php
-
+print_r('asdasdas');exit;
 /* Add field image category */
 add_action( 'categoria_add_form_fields', 'categoria_add_new_meta_fields', 10, 2 );
 function categoria_add_new_meta_fields(){
@@ -61,7 +61,7 @@ function restrict_gallery() {
     if ($typenow=='audios') {
         $taxonomy = 'Temario';
         $business_taxonomy = get_taxonomy($taxonomy);
-        print_r($business_taxonomy);exit;
+
         wp_dropdown_categories(array(
             'show_option_all' =>  __("Ver todas las categorias "),
             'taxonomy'        =>  $taxonomy,
