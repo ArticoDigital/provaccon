@@ -7,7 +7,7 @@ function categoria_add_new_meta_fields(){
     <div>
         <label for="term_meta[imagen]">
             <input type="text" name="term_meta[imagen]" size="36" id="upload_image" value=""><br>
-            <input id="upload_image_button" type="button" class='button button-primary' value="Subir Imagen" />
+            <input id="upload_image_button" type="button" class='button button-primary' value="Subir PDF" />
             <br/><i>Introduce una URL o establece un PDF de preguntas</i>
         </label>
     </div>
@@ -58,8 +58,8 @@ add_action('restrict_manage_posts','restrict_gallery');
 function restrict_gallery() {
     global $typenow;
     global $wp_query;
-    if ($typenow=='galerias') {
-        $taxonomy = 'categoria';
+    if ($typenow=='audios') {
+        $taxonomy = 'temario';
         $business_taxonomy = get_taxonomy($taxonomy);
         wp_dropdown_categories(array(
             'show_option_all' =>  __("Ver todas las categorias "),
@@ -78,8 +78,8 @@ add_filter('parse_query','convert_id_to_taxonomy_term_in_query');
 function convert_id_to_taxonomy_term_in_query($query) {
     global $pagenow;
     $qv = &$query->query_vars;
-    if ($pagenow=='edit.php' &&  $qv['post_type'] == 'galerias' ) {
-        $term = get_term_by('id',$qv['categoria'],'categoria');
-        $qv['categoria'] = $term->slug;
+    if ($pagenow=='edit.php' &&  $qv['post_type'] == 'audios' ) {
+        $term = get_term_by('id',$qv['temario'],'temario');
+        $qv['temario'] = $term->slug;
     }
 }
