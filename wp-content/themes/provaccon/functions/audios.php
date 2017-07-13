@@ -1,5 +1,5 @@
 <?php
-print_r('asdasdas');exit;
+
 /* Add field image category */
 add_action( 'categoria_add_form_fields', 'categoria_add_new_meta_fields', 10, 2 );
 function categoria_add_new_meta_fields(){
@@ -11,6 +11,7 @@ function categoria_add_new_meta_fields(){
             <br/><i>Introduce una URL o establece un PDF de preguntas</i>
         </label>
     </div>
+    print_r('erm_meta[imagen]');exit;
     <?php
 }
 /* Add field in edit chef  */
