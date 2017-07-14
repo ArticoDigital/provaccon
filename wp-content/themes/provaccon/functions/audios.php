@@ -1,8 +1,81 @@
 <?php
 
+/* Add Recipes */
+add_action('init', 'registerAudios');
+function registerAudios()
+{
+    $labels = array(
+        'name' => __('Audios'),
+        'singular_name' => __('Audios'),
+        'add_new' => __('Añadir audio', 'audio'),
+        'add_new_item' => __('Añadir nueva audio'),
+        'edit_item' => __('Editar audio'),
+        'new_item' => __('Nueva audio'),
+        'view_item' => __('Ver audio'),
+        'search_items' => __('Buscar audio'),
+        'not_found' => __('No se han encontrado audio'),
+        'not_found_in_trash' => __('No se han encontrado audio en la papelera'),
+        'parent_item_colon' => '',
+    );
+    //  $args
+    $args = array('labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'query_var' => true,
+        'rewrite' => true,
+        'capability_type' => 'post',
+        'hierarchical' => false,
+        'menu_position' => null,
+        'menu_icon'   => 'dashicons-controls-volumeon',
+        'supports' => array('title', 'editor', 'author', 'revisions', 'thumbnail', 'excerpt', 'comments', 'custom-fields')
+    );
+    register_post_type('audios', $args);
+}
+
+$labels = array(
+    'name' => __('Temario'),
+    'singular_name' => __('Temario'),
+    'search_items' => __('Buscar Temario'),
+    'popular_items' => __('Temario populares'),
+    'all_items' => __('Todos los Temario'),
+    'parent_item' => null,
+    'parent_item_colon' => null,
+    'edit_item' => __('Editar Temario'),
+    'update_item' => __('Actualizar Temario'),
+    'add_new_item' => __('Añadir nuevo Temario'),
+    'new_item_name' => __('Nombre del nuevo Temario'),
+    'separate_items_with_commas' => __('Separar Temario por comas'),
+    'add_or_remove_items' => __('Añadir o eliminar Temario'),
+    'choose_from_most_used' => __('Escoger entre los Temario más utilizados')
+);
+register_taxonomy('Temario', array('audios'), array(
+    'hierarchical' => true,
+    'labels' => $labels,
+    'show_ui' => true,
+    'query_var' => true,
+    'rewrite' => array('slug' => 'Temario'),
+));
+
+function my_login_redirect( $redirect_to, $request, $user ) {
+    //is there a user to check?
+
+    if ( isset( $user->roles ) && is_array( $user->roles ) ) {
+
+        if ( in_array( 'administrator', $user->roles ) ) {
+            return home_url();
+        } else {
+            return home_url();
+        }
+    } else {
+        return $redirect_to;
+    }
+}
+
 /* Add field image category */
-add_action( 'categoria_add_form_fields', 'categoria_add_new_meta_fields', 10, 2 );
+add_action( 'Temario_add_form_fields', 'categoria_add_new_meta_fields', 10, 2 );
 function categoria_add_new_meta_fields(){
+
     ?>
     <div>
         <label for="term_meta[imagen]">
@@ -11,7 +84,7 @@ function categoria_add_new_meta_fields(){
             <br/><i>Introduce una URL o establece un PDF de preguntas</i>
         </label>
     </div>
-    print_r('erm_meta[imagen]');exit;
+
     <?php
 }
 /* Add field in edit chef  */
@@ -27,12 +100,13 @@ function categoria_edit_meta_fields($term){
                 <p><input id="upload_image_button" type="button" class='button button-primary' style='width: 100px' value="Subir PDF" />
                     <i>Introduce una URL o establece un PDF de preguntas.</i></p>
             </label>
-            <p><?php if( esc_attr( $term_meta['imagen'] ) != "" ) echo "<table><tr><td><i><strong>PDF actual</strong></i>:</td><td> <img src='".esc_attr( $term_meta['imagen'] )."'></td></tr></table>"; ?></p>
+
         </td>
     </tr>
     <?php
+
 }
-add_action( 'categoria_edit_form_fields', 'categoria_edit_meta_fields', 10, 2 );
+add_action( 'Temario_edit_form_fields', 'categoria_edit_meta_fields', 10, 2 );
 /* Save edit and create chef */
 function categoria_save_custom_meta( $term_id ) {
     if ( isset( $_POST['term_meta'] ) ) {
@@ -53,12 +127,14 @@ function my_enqueue() {
     wp_enqueue_media();
     wp_enqueue_script( 'my_custom_script', themeDirUri . '/functions/admin.js' );
 }
-add_action( 'edited_categoria', 'categoria_save_custom_meta', 10, 2 );
-add_action( 'create_categoria', 'categoria_save_custom_meta', 10, 2 );
+add_action( 'edited_Temario', 'categoria_save_custom_meta', 10, 2 );
+add_action( 'create_Temario', 'categoria_save_custom_meta', 10, 2 );
 add_action('restrict_manage_posts','restrict_gallery');
+
 function restrict_gallery() {
     global $typenow;
     global $wp_query;
+
     if ($typenow=='audios') {
         $taxonomy = 'Temario';
         $business_taxonomy = get_taxonomy($taxonomy);

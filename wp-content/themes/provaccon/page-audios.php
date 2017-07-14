@@ -43,8 +43,8 @@ get_header(); ?>
             $userId = get_current_user_id();
             $results = $wpdb->get_results('SELECT * FROM pro_usermeta WHERE user_id = ' . $userId .
                 ' and meta_key = "date_audio" ', OBJECT);
-
             ?>
+
             <p class="note"> ► Ubiquese sobre el audio y arrastre arriba o abajo según el orden que desea reproducir y
                 seleccione reproducir todos automaticamente
                 .</p>
@@ -81,7 +81,20 @@ get_header(); ?>
                     </article>
                 <?php endwhile; ?>
             </section>
-        <?php else: ?>
+            <?php
+            $terms = get_terms("Temario", array("hide_empty" => false));
+            $pdf = get_option("taxonomy_" . $terms[0]->term_id)['imagen'];
+            if (!empty($pdf)){?>
+                <a style="text-align: center;
+    display: block;
+    padding: .75rem 2rem;
+    color: #D4D0CA;
+    margin-top: 1.5rem;
+    background: #313332;
+    font-size: .9375rem;
+    line-height: 1.2;
+    font-weight: 400;" href="<?php echo $pdf ?>" target="_blank">Descargue el pdf de evaluación</a>
+            <?php }; else: ?>
             <div class="row center Audio-Forms">
                 <p class="col-16 small-16 medium-16">
                     Regístrate para obtener acceso inmediato a este curso completo y muchos otros como éste, además
