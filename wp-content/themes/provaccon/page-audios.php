@@ -84,7 +84,7 @@ get_header(); ?>
 
             <?php
 
-            $tag = get_term_by('slug', 'tema-1', 'Temario');
+            $tag = get_term_by('slug', $category, 'Temario');
 
             $pdf = get_option("taxonomy_" . $tag->term_id)['imagen'];
             if (!empty($pdf)) {
