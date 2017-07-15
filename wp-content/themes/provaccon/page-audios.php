@@ -81,10 +81,14 @@ get_header(); ?>
                     </article>
                 <?php endwhile; ?>
             </section>
+
             <?php
-            $terms = get_terms("Temario", array("hide_empty" => false));
-            $pdf = get_option("taxonomy_" . $terms[0]->term_id)['imagen'];
-            if (!empty($pdf)){?>
+
+            $tag = get_term_by('slug', 'tema-1', 'Temario');
+
+            $pdf = get_option("taxonomy_" . $tag->term_id)['imagen'];
+            if (!empty($pdf)) {
+                ?>
                 <a style="text-align: center;
     display: block;
     padding: .75rem 2rem;
@@ -94,7 +98,8 @@ get_header(); ?>
     font-size: .9375rem;
     line-height: 1.2;
     font-weight: 400;" href="<?php echo $pdf ?>" target="_blank">Descargue el pdf de evaluación</a>
-            <?php }; else: ?>
+            <?php };
+        else: ?>
             <div class="row center Audio-Forms">
                 <p class="col-16 small-16 medium-16">
                     Regístrate para obtener acceso inmediato a este curso completo y muchos otros como éste, además
