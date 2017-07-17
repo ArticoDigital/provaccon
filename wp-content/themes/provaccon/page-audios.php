@@ -74,21 +74,31 @@ get_header(); ?>
             </form>
             <section id="sortable">
                 <?php
-                while ($query->have_posts()) : $query->the_post(); ?>
+                while ($query->have_posts()) : $query->the_post();
+                    $meta = get_post_meta(get_the_ID(), 'pdf_audio');
+                    $url = (!empty($meta)) ? $meta[0] : 0;
+
+                    ?>
                     <article class="Audio-content row middle">
-                        <div class="col-8 small-16 medium-8"><?php the_title(); ?></div>
-                        <div class="col-8 small-16 medium-8"><?php the_content(); ?></div>
+                        <div class="col-6 small-16 medium-5"><?php the_title(); ?></div>
+                        <div class="col-6 small-16 medium-5"><?php the_content(); ?></div>
+                        <div class="col-4 small-16 medium-5"><?php if ($meta[0]) {
+                                ?>
+                                <a target="_blank" style="padding-left: 30px;text-decoration: underline; color: #3f94ff" href="<?php echo $meta[0] ?>">  Descargar PDF de evaluación</a>
+                                <?php
+                            } ?></div>
+
                     </article>
                 <?php endwhile; ?>
             </section>
 
-            <?php
-
+                <!-- <?php /*
             $tag = get_term_by('slug', $category, 'Temario');
 
             $pdf = get_option("taxonomy_" . $tag->term_id)['imagen'];
             if (!empty($pdf)) {
-                ?>
+                */
+            ?>
                 <a style="text-align: center;
     display: block;
     padding: .75rem 2rem;
@@ -97,9 +107,11 @@ get_header(); ?>
     background: #313332;
     font-size: .9375rem;
     line-height: 1.2;
-    font-weight: 400;" href="<?php echo $pdf ?>" target="_blank">Descargue el pdf de evaluación</a>
-            <?php };
-        else: ?>
+    font-weight: 400;" href="<?php /*echo $pdf */
+            ?>" target="_blank">Descargue el pdf de evaluación</a>
+            --><?php /*}; */
+            ?>
+        <?php else: ?>
             <div class="row center Audio-Forms">
                 <p class="col-16 small-16 medium-16">
                     Regístrate para obtener acceso inmediato a este curso completo y muchos otros como éste, además

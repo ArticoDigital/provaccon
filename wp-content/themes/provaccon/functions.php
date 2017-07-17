@@ -174,8 +174,7 @@ function add_rewrite_rules()
 
 add_action('init', 'add_rewrite_rules');
 
-add_filter( 'login_redirect', 'my_login_redirect', 10, 3 );
-
+add_filter('login_redirect', 'my_login_redirect', 10, 3);
 
 
 function add_user_meta_fields($user)
@@ -202,3 +201,48 @@ function add_user_meta_fields($user)
 
 <?php }
 
+add_action('add_meta_boxes', 'pdf_meta_box_add');
+function pdf_meta_box_add()
+{
+    add_meta_box('pfd-box-id', 'INFORMACIÓN ADICIONAL', 'pdf_meta_box_cb', 'audios', 'normal', 'high');
+}
+
+function pdf_meta_box_cb($post)
+{
+    global $post;
+    $values = get_post_custom($post->ID);
+    $pdf_audio = isset($values['pdf_audio']) ? $values['pdf_audio'][0] : '';
+    wp_nonce_field('my_meta_box_nonce', 'meta_box_nonce');
+    ?>
+    <h2 style="padding: 0; font-weight: bold; margin-top: 20px">PDF evaluación</h2>
+    <hr>
+    <p>
+        <label for="pdf_audio">URL pdf</label>
+        <input type="text" name="pdf_audio" id="pdf_audio" value="<?php echo $pdf_audio; ?>"/>
+    </p>
+    <?php
+}
+
+add_action('save_post', 'pdf_meta_box_save');
+function pdf_meta_box_save($post_id)
+{// Bail if we're doing an auto save
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+
+    // if our nonce isn't there, or we can't verify it, bail
+    if (!isset($_POST['meta_box_nonce'])
+        || !wp_verify_nonce($_POST['meta_box_nonce'], 'my_meta_box_nonce')
+    ) return;
+
+    // if our current user can't edit this post, bail
+    if (!current_user_can('edit_post')) return;
+
+    $allowed = array(
+        'a' => array(
+            'href' => array()
+        )
+    );
+
+    if (isset($_POST['pdf_audio']))
+
+        update_post_meta($post_id, 'pdf_audio', wp_kses($_POST['pdf_audio'], $allowed));
+}
